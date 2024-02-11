@@ -19,7 +19,7 @@ class IndexView(View):
             exit_time = self.cal_time(cd['entry_time'], int(cd['holidays']),  int(cd['two_days_weekend']))
             return JsonResponse({'response': exit_time}, status=200)
         else:
-            return JsonResponse({'response': 'ورودی اشتباه'}, status=422)
+            return JsonResponse({'response': 'wrong input'}, status=422)
 
     def cal_time(self, entry_time, holidays, two_days_weekend):
         lunch_time = 30

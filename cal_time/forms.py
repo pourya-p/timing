@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 
 class IndexForms(forms.Form):
@@ -21,3 +22,9 @@ class IndexForms(forms.Form):
         ),
         widget=forms.Select(),
     )
+
+    def clean_holidays(self):
+        holidays = self.cleaned_data['holidays']
+        if holidays >= 0:
+            return holidays
+        raise ValidationError("wrong input")
